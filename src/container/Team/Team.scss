@@ -1,0 +1,110 @@
+.app__team {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+
+  @media screen and (max-width: 1200px) {
+    width: 95%;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+  }
+}
+
+.app__team-item {
+  width: 100%;
+  max-width: 300px;
+  background-color: var(--white-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.app__team-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.app__team-content {
+  text-align: center;
+
+  h4 {
+    margin-bottom: 0.5rem;
+    color: var(--black-color);
+  }
+
+  .team-role {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .team-org {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .team-desc {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--gray-color);
+  }
+}
+
+.team-social {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+
+  a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
