@@ -1,27 +1,38 @@
-.app__team {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+.app__profiles {
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-items: center;
-
+  max-width: 100%;
+  margin: 3rem auto 2rem;
+  overflow: hidden;
+  position: relative;
+  
   @media screen and (max-width: 1200px) {
     width: 95%;
   }
+}
 
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    width: 100%;
+.app__profiles-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+  
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Move half the width since content is duplicated */
   }
 }
 
 .app__team-item {
-  width: 100%;
-  max-width: 300px;
+  min-width: 300px;
+  flex-shrink: 0;
   background-color: var(--white-color);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -35,7 +46,7 @@
   }
 
   @media screen and (max-width: 768px) {
-    max-width: 100%;
+    min-width: 280px; /* Slightly smaller on mobile if needed */
   }
 }
 

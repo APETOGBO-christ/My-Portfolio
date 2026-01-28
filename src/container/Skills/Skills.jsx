@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
 
@@ -9,13 +10,43 @@ import './Skills.scss';
 const Skills = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
 
     client.fetch(query).then((data) => {
-      setExperiences(data);
+      // Helper to parse French dates like "Novembre 2025"
+      const parseDate = (dateStr) => {
+        if (!dateStr) return 0;
+        const months = {
+          janvier: 0,
+          février: 1,
+          mars: 2,
+          avril: 3,
+          mai: 4,
+          juin: 5,
+          juillet: 6,
+          août: 7,
+          septembre: 8,
+          octobre: 9,
+          novembre: 10,
+          décembre: 11,
+        };
+        const parts = dateStr.trim().split(' ');
+        if (parts.length < 2) return 0;
+
+        const monthName = parts[0].toLowerCase();
+        const year = parseInt(parts[1], 10);
+        const month = months[monthName] !== undefined ? months[monthName] : 0;
+
+        return new Date(year, month).getTime();
+      };
+
+      // Sort descending (newest first)
+      const sortedData = data.sort((a, b) => parseDate(b.year) - parseDate(a.year));
+      setExperiences(sortedData);
     });
 
     client.fetch(skillsQuery).then((data) => {
@@ -25,7 +56,7 @@ const Skills = () => {
 
   return (
     <>
-      <h2 className="head-text">Skills & Experiences</h2>
+      <h2 className="head-text">{t('skills.title')}</h2>
 
       <div className="app__skills-container">
         <motion.div className="app__skills-list">
@@ -38,6 +69,9 @@ const Skills = () => {
             >
               <div className="app__skills-category-header">
                 <h3 className="bold-text">{skill.name}</h3>
+                {skill.description && (
+                  <p className="p-text skills-desc">{skill.description}</p>
+                )}
               </div>
               {skill.icon && (
                 <div className="app__skills-category-icon">

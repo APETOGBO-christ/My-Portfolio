@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavigationDots, SocialMedia } from '../components';
 
 const AppWrap = (Component, idName, classNames) => function HOC() {
+  const { t } = useTranslation();
   return (
     <div id={idName} className={`app__container ${classNames}`}>
       <SocialMedia />
@@ -9,8 +11,7 @@ const AppWrap = (Component, idName, classNames) => function HOC() {
         <Component />
 
         <div className="copyright">
-          <p className="p-text">@2025 Christ APETOGBO</p>
-          <p className="p-text">All rights reserved</p>
+          <p className="p-text">{t('footer.copyright')}</p>
         </div>
       </div>
       <NavigationDots active={idName} />

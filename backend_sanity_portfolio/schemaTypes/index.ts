@@ -7,6 +7,7 @@ import {experiences} from './experiences'
 import {contact} from './contact'
 import {certifications} from './certifications'
 import {team} from './team'
+import {gallery} from './gallery'
 
 export const schemaTypes = [
   works,
@@ -16,6 +17,7 @@ export const schemaTypes = [
   skills,
   experiences,
   contact,
-  certifications,
   team,
+  certifications,
+  gallery,
 ]

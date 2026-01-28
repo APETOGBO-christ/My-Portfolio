@@ -81,6 +81,17 @@
         font-size: 0.95rem;
       }
     }
+
+    .skills-desc {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--gray-color);
+      line-height: 1.5;
+
+      @media screen and (min-width: 2000px) {
+        font-size: 1.25rem;
+      }
+    }
   }
 
   .app__skills-category-icon {

@@ -25,5 +25,10 @@ export const skills = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    }),
   ],
 })

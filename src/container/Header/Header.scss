@@ -134,59 +134,113 @@
 
     background: var(--white-color);
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    
+    // Centering text content
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; // Remove padding to let flexbox center perfectly
+    text-align: center;
+  }
 
-    img {
-      width: 60%;
-      height: 60%;
+  .stylized-word {
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+    
+    // "Taillée" effect
+    background: linear-gradient(135deg, var(--black-color) 0%, var(--secondary-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1));
+    
+    margin: 0;
+    width: 100%;
+    line-height: 1; // Tighter line height for better vertical centering
+    display: flex;       // Make text itself a flex container
+    justify-content: center; // Center content inside text block
+    align-items: center; // Center verticality if height > font-size
+    height: 100%;        // Take full height of parent
+
+    @media screen and (min-width: 2000px) {
+      font-size: 1.5rem;
     }
   }
 
-  // circles with different height & width
+  // circles with different height & width and tailored font sizes
 
-  div:nth-child(1) {
+  div:nth-child(1) { // Excellence
     width: 100px;
     height: 100px;
+    
+    .stylized-word {
+      font-size: 0.6rem; 
+    }
   }
 
-  div:nth-child(2) {
+  div:nth-child(2) { // Responsabilité
     margin: 1.75rem;
     width: 150px;
     height: 150px;
+    
+    .stylized-word {
+      font-size: 0.8rem;
+    }
   }
 
-  div:nth-child(3) {
+  div:nth-child(3) { // Discipline
     width: 70px;
     height: 70px;
+    
+    .stylized-word {
+      font-size: 0.45rem;
+    }
   }
 
   // New 4th circle - smallest, positioned to the right
-  div:nth-child(4) {
+  div:nth-child(4) { // Intégrité
     width: 55px;
     height: 55px;
     position: absolute;
     right: 15px;
     top: 28%;
+    
+    .stylized-word {
+      font-size: 0.35rem;
+    }
   }
 
   @media screen and (min-width: 2000px) {
     div:nth-child(2) {
       width: 400px;
       height: 400px;
+      
+      .stylized-word { font-size: 2rem; }
     }
 
     div:nth-child(3) {
       width: 170px;
       height: 170px;
+      
+      .stylized-word { font-size: 1rem; }
     }
 
     div:nth-child(1) {
       width: 200px;
       height: 200px;
+      
+      .stylized-word { font-size: 1.2rem; }
     }
 
     div:nth-child(4) {
       width: 120px;
       height: 120px;
+      
+      .stylized-word { font-size: 0.8rem; }
     }
   }
 

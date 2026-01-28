@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "accueil",
+    "about": "à propos",
+    "work": "projets",
+    "skills": "compétences",
+    "certifications": "certifications",
+    "team": "équipe",
+    "contact": "contact"
+  },
+  "header": {
+    "hello": "Bonjour, je suis",
+    "title1": "Leader & Entrepreneur",
+    "title2": "Expert en Cybersécurité",
+    "downloadCV": "Télécharger CV"
+  },
+  "about": {
+    "title": "Construire des <1>Solutions Sécurisées</1> et des <3>Projets Innovants</3>"
+  },
+  "work": {
+    "title": "Mes <1>Projets</1> & Réalisations",
+    "filters": {
+      "cybersecurity": "Cybersécurité",
+      "webApp": "Application Web",
+      "mobileApp": "Application Mobile",
+      "innovation": "Innovation",
+      "all": "Tout"
+    }
+  },
+  "skills": {
+    "title": "Compétences & Expériences"
+  },
+  "certifications": {
+    "title": "Mes <1>Certifications</1> & Formations",
+    "viewCert": "Voir le Certificat",
+    "clickToView": "🔍 Cliquer pour voir en taille réelle"
+  },
+  "team": {
+    "title": "Mon <1>Équipe</1> & Mentors",
+    "description": "Les personnes formidables qui me soutiennent, me guident et collaborent avec moi"
+  },
+  "footer": {
+    "title": "Prenez un café & discutons ensemble",
+    "yourName": "Votre Nom",
+    "yourEmail": "Votre Email",
+    "yourMessage": "Votre Message",
+    "send": "Envoyer le Message",
+    "sending": "Envoi en cours...",
+    "thankYou": "Merci de m'avoir contacté !",
+    "copyright": "@2025 Christ APETOGBO Tous droits réservés"
+  }
+}

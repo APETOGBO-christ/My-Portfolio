@@ -35,4 +35,22 @@
       height: 320px;
     }
   }
+
+  /* Support for PortableText elements */
+  ul {
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+    
+    li {
+       font-size: 0.85rem;
+       color: var(--gray-color);
+       line-height: 1.5;
+       margin-bottom: 0.25rem;
+    }
+  }
+  
+  strong {
+    font-weight: 800;
+    color: var(--black-color);
+  }
 }

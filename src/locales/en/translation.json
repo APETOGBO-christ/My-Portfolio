@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "home",
+    "about": "about",
+    "work": "work",
+    "skills": "skills",
+    "certifications": "certifications",
+    "team": "team",
+    "contact": "contact"
+  },
+  "header": {
+    "hello": "Hello, I am",
+    "title1": "Leader & Entrepreneur",
+    "title2": "Cybersecurity Expert",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "Building <1>Secure Solutions</1> and <3>Innovative Projects</3>"
+  },
+  "work": {
+    "title": "My <1>Projects</1> & Achievements",
+    "filters": {
+      "cybersecurity": "Cybersecurity",
+      "webApp": "Web App",
+      "mobileApp": "Mobile App",
+      "innovation": "Innovation",
+      "all": "All"
+    }
+  },
+  "skills": {
+    "title": "Skills & Experiences"
+  },
+  "certifications": {
+    "title": "My <1>Certifications</1> & Training",
+    "viewCert": "View Certificate",
+    "clickToView": "🔍 Click to view full size"
+  },
+  "team": {
+    "title": "My <1>Team</1> & Mentors",
+    "description": "The amazing people who support, guide, and collaborate with me"
+  },
+  "footer": {
+    "title": "Take a coffee & chat with me",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "yourMessage": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "thankYou": "Thank you for getting in touch!",
+    "copyright": "@2025 Christ APETOGBO All rights reserved"
+  }
+}

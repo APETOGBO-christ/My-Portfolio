@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
@@ -11,6 +12,7 @@ const Work = () => {
   const [filterWork, setFilterWork] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
+  const { t } = useTranslation();
 
   useEffect(() => {
     const query = '*[_type == "works"]';
@@ -31,14 +33,26 @@ const Work = () => {
       if (item === 'All') {
         setFilterWork(works);
       } else {
-        setFilterWork(works.filter((work) => work.tags.includes(item)));
+        setFilterWork(works.filter((work) => work.tags && work.tags.includes(item)));
       }
     }, 500);
   };
 
+  const filterLabels = {
+    Cybersecurity: t('work.filters.cybersecurity'),
+    'Web App': t('work.filters.webApp'),
+    'Mobile App': t('work.filters.mobileApp'),
+    Innovation: t('work.filters.innovation'),
+    All: t('work.filters.all'),
+  };
+
   return (
     <>
-      <h2 className="head-text">My <span>Projects</span> & Achievements</h2>
+      <h2 className="head-text">
+        <Trans i18nKey="work.title">
+          My <span>Projects</span> & Achievements
+        </Trans>
+      </h2>
 
       <div className="app__work-filter">
         {['Cybersecurity', 'Web App', 'Mobile App', 'Innovation', 'All'].map((item, index) => (
@@ -47,7 +61,7 @@ const Work = () => {
             onClick={() => handleWorkFilter(item)}
             className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
           >
-            {item}
+            {filterLabels[item]}
           </div>
         ))}
       </div>
@@ -98,7 +112,7 @@ const Work = () => {
               <p className="p-text" style={{ marginTop: 10 }}>{work.description}</p>
 
               <div className="app__work-tag app__flex">
-                <p className="p-text">{work.tags[0]}</p>
+                <p className="p-text">{work.tags && work.tags[0]}</p>
               </div>
             </div>
           </div>

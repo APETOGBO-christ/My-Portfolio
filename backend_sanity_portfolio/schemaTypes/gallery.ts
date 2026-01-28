@@ -1,8 +1,8 @@
-import {defineType, defineField} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
-export const abouts = defineType({
-  name: 'abouts',
-  title: 'Abouts',
+export const gallery = defineType({
+  name: 'gallery',
+  title: 'Gallery',
   type: 'document',
   fields: [
     defineField({
@@ -14,9 +14,7 @@ export const abouts = defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'array',
-      of: [{type: 'block'}],
-      validation: (Rule) => Rule.required(),
+      type: 'string',
     }),
     defineField({
       name: 'imgUrl',
@@ -25,6 +23,19 @@ export const abouts = defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [
+        {
+          name: 'tag',
+          title: 'Tag',
+          type: 'string',
+        },
+      ],
     }),
   ],
 })

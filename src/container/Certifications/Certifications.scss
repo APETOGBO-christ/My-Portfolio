@@ -1,31 +1,46 @@
-.app__certifications {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+.app__certifications-marquee {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   margin-top: 3rem;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2rem 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
 
-  @media screen and (max-width: 1200px) {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    width: 95%;
+.app__certifications-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
   }
+}
 
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    width: 100%;
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
 .app__certification-item {
+  min-width: 350px; /* Fixed width for cards */
+  scroll-snap-align: center; /* Snap cards to center */
+  flex-shrink: 0; /* Prevent shrinking */
   background: var(--white-color);
   border-radius: 15px;
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    min-width: 300px;
+  }
 
   &::before {
     content: '';

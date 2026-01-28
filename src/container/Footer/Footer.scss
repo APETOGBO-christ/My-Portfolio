@@ -77,7 +77,7 @@
     margin: 0.75rem 0;
     border-radius: 10px;
     cursor: pointer;
-    background-color: var(--primary-color);
+    background-color: var(--white-color);
 
     transition: all 0.3s ease-in-out;
 
@@ -87,7 +87,7 @@
       padding: 0.95rem;
       border: none;
       border-radius: 7px;
-      background-color: var(--primary-color);
+      background-color: var(--white-color);
 
       font-family: var(--font-base);
       color: var(--secondary-color);
@@ -99,7 +99,7 @@
     }
 
     &:hover {
-      box-shadow: 0 0 25px var(--primary-color);
+      box-shadow: 0 0 25px var(--white-color);
     }
   }
 
@@ -132,24 +132,24 @@
 // Vision Statement Section
 .app__footer-vision {
   width: 70%;
-  margin: 4rem auto 2rem;
+  margin: 2rem auto 1rem;
   text-align: center;
   
   @media screen and (max-width: 768px) {
     width: 90%;
-    margin: 3rem auto 1.5rem;
+    margin: 1.5rem auto 1rem;
   }
 }
 
 .vision-quote {
   position: relative;
-  padding: 2rem;
+  padding: 1rem; // Reduced padding
   background: linear-gradient(135deg, rgba(49, 59, 172, 0.05), rgba(239, 65, 54, 0.05));
   border-radius: 20px;
   border-left: 4px solid var(--secondary-color);
   
   .quote-mark {
-    font-size: 4rem;
+    font-size: 3rem; // Slightly smaller quotes
     font-family: Georgia, serif;
     color: var(--secondary-color);
     opacity: 0.3;
@@ -159,20 +159,20 @@
     
     &.closing {
       position: relative;
-      top: 2rem;
+      top: 1rem;
     }
   }
   
   .vision-text {
     font-size: 1.1rem;
-    line-height: 1.8;
+    line-height: 1.6; // Reduced line height
     color: var(--black-color);
     font-style: italic;
-    margin: 1rem 0;
+    margin: 0.5rem 0; // Reduced margin
     
     @media screen and (max-width: 768px) {
       font-size: 1rem;
-      line-height: 1.6;
+      line-height: 1.5;
     }
   }
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
@@ -9,6 +10,7 @@ const Footer = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const { username, email, message } = formData;
 
@@ -37,7 +39,7 @@ const Footer = () => {
 
   return (
     <>
-      <h2 className="head-text">Take a coffee & chat with me</h2>
+      <h2 className="head-text">{t('footer.title')}</h2>
 
       <div className="app__footer-cards">
         <div className="app__footer-card ">
@@ -52,26 +54,26 @@ const Footer = () => {
       {!isFormSubmitted ? (
         <div className="app__footer-form app__flex">
           <div className="app__flex">
-            <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
+            <input className="p-text" type="text" placeholder={t('footer.yourName')} name="username" value={username} onChange={handleChangeInput} />
           </div>
           <div className="app__flex">
-            <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
+            <input className="p-text" type="email" placeholder={t('footer.yourEmail')} name="email" value={email} onChange={handleChangeInput} />
           </div>
           <div>
             <textarea
               className="p-text"
-              placeholder="Your Message"
+              placeholder={t('footer.yourMessage')}
               value={message}
               name="message"
               onChange={handleChangeInput}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
+          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? t('footer.send') : t('footer.sending')}</button>
         </div>
       ) : (
         <div>
           <h3 className="head-text">
-            Thank you for getting in touch!
+            {t('footer.thankYou')}
           </h3>
         </div>
       )}
@@ -81,10 +83,9 @@ const Footer = () => {
         <div className="vision-quote">
           <span className="quote-mark">&ldquo;</span>
           <p className="p-text vision-text">
-            Ma vision est de bâtir un écosystème technologique africain où l&apos;innovation et la cybersécurité
-            se rencontrent pour créer des solutions qui transforment des vies. Je crois fermement que la
-            technologie, combinée au leadership et à l&apos;entrepreneuriat, peut résoudre les défis les plus
-            pressants de notre continent et propulser l&apos;Afrique vers un avenir numérique prospère.
+            Bâtir des startups qui comptent, portées par l’excellence, créées pour l’impact, et orientées vers la liberté.
+            <br />
+            Pour l’Afrique. Pour le monde.
           </p>
           <span className="quote-mark closing">&rdquo;</span>
         </div>
@@ -97,5 +98,5 @@ const Footer = () => {
 export default AppWrap(
   MotionWrap(Footer, 'app__footer'),
   'contact',
-  'app__whitebg',
+  'app__primarybg',
 );

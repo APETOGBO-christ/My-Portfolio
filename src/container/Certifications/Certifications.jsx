@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
@@ -8,6 +9,7 @@ import './Certifications.scss';
 const Certifications = () => {
   const [certifications, setCertifications] = useState([]);
   const [selectedCert, setSelectedCert] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const query = '*[_type == "certifications"] | order(date desc)';
@@ -27,53 +29,59 @@ const Certifications = () => {
 
   return (
     <div>
-      <h2 className="head-text">My <span>Certifications</span> & Training</h2>
+      <h2 className="head-text">
+        <Trans i18nKey="certifications.title">
+          My <span>Certifications</span> & Training
+        </Trans>
+      </h2>
 
-      <div className="app__certifications">
-        {certifications.map((cert, index) => (
-          <motion.div
-            whileInView={{ opacity: [0, 1] }}
-            transition={{ duration: 0.5 }}
-            className="app__certification-item"
-            key={cert.name + index}
-          >
-            <div className="app__certification-content">
-              {cert.logo && (
-                <div
-                  className="app__certification-logo"
-                  onClick={() => openModal(cert)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyPress={(e) => e.key === 'Enter' && openModal(cert)}
-                >
-                  <img src={urlFor(cert.logo).url()} alt={cert.issuer} />
-                  <div className="app__certification-overlay">
-                    <span>🔍 Click to view full size</span>
+      <div className="app__certifications-marquee">
+        <div className="app__certifications-track">
+          {[...certifications, ...certifications].map((cert, index) => (
+            <motion.div
+              whileInView={{ opacity: [0, 1] }}
+              transition={{ duration: 0.5 }}
+              className="app__certification-item"
+              key={index}
+            >
+              <div className="app__certification-content">
+                {cert.logo && (
+                  <div
+                    className="app__certification-logo"
+                    onClick={() => openModal(cert)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyPress={(e) => e.key === 'Enter' && openModal(cert)}
+                  >
+                    <img src={urlFor(cert.logo).url()} alt={cert.issuer} />
+                    <div className="app__certification-overlay">
+                      <span>{t('certifications.clickToView')}</span>
+                    </div>
                   </div>
-                </div>
-              )}
-              <div className="app__certification-info">
-                <h3 className="bold-text">{cert.name}</h3>
-                <p className="p-text">{cert.issuer}</p>
-                {cert.date && (
-                  <p className="p-text cert-date">
-                    {new Date(cert.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                  </p>
                 )}
-                {cert.credentialId && (
-                  <p className="p-text cert-id">ID: {cert.credentialId}</p>
+                <div className="app__certification-info">
+                  <h3 className="bold-text">{cert.name}</h3>
+                  <p className="p-text">{cert.issuer}</p>
+                  {cert.date && (
+                    <p className="p-text cert-date">
+                      {new Date(cert.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                    </p>
+                  )}
+                  {cert.credentialId && (
+                    <p className="p-text cert-id">ID: {cert.credentialId}</p>
+                  )}
+                </div>
+                {cert.credentialUrl && (
+                  <div className="app__certification-link">
+                    <a href={cert.credentialUrl} target="_blank" rel="noreferrer">
+                      <button type="button" className="p-text">{t('certifications.viewCert')}</button>
+                    </a>
+                  </div>
                 )}
               </div>
-              {cert.credentialUrl && (
-                <div className="app__certification-link">
-                  <a href={cert.credentialUrl} target="_blank" rel="noreferrer">
-                    <button type="button" className="p-text">View Certificate</button>
-                  </a>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Modal for full-size certificate view */}
