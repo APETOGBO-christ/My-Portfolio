@@ -41,7 +41,7 @@ const Header = () => {
             <p className="p-text">{t('header.title2')}</p>
           </div>
           <div className="cv-download">
-            <a href="/Christ_APETOGBO_CV.pdf" download>
+            <a href="https://drive.google.com/file/d/1gIS7wPJ53HDtu25DNUjmg79cpgQygRoF/view?usp=sharing" download>
               <button type="button" className="p-text">{t('header.downloadCV')}</button>
             </a>
           </div>

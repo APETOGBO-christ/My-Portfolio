@@ -12,13 +12,18 @@
 
 .app__profiles-track {
   display: flex;
-  gap: 2rem;
   width: max-content;
-  animation: scroll 40s linear infinite;
+  animation: scroll 60s linear infinite;
   
   &:hover {
     animation-play-state: paused;
   }
+}
+
+.app__team-group {
+  display: flex;
+  gap: 2rem;
+  padding-right: 2rem; /* Exact space to match gap */
 }
 
 @keyframes scroll {
@@ -26,7 +31,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Move half the width since content is duplicated */
+    transform: translateX(-25%);
   }
 }
 

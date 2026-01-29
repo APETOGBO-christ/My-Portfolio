@@ -37,49 +37,51 @@ const Certifications = () => {
 
       <div className="app__certifications-marquee">
         <div className="app__certifications-track">
-          {[...certifications, ...certifications].map((cert, index) => (
-            <motion.div
-              whileInView={{ opacity: [0, 1] }}
-              transition={{ duration: 0.5 }}
-              className="app__certification-item"
-              key={index}
-            >
-              <div className="app__certification-content">
-                {cert.logo && (
-                  <div
-                    className="app__certification-logo"
-                    onClick={() => openModal(cert)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyPress={(e) => e.key === 'Enter' && openModal(cert)}
-                  >
-                    <img src={urlFor(cert.logo).url()} alt={cert.issuer} />
-                    <div className="app__certification-overlay">
-                      <span>{t('certifications.clickToView')}</span>
+          {[1, 2, 3, 4].map((groupKey) => (
+            <div className="app__certifications-group" key={`group-${groupKey}`}>
+              {certifications.map((cert, index) => (
+                <div
+                  className="app__certification-item"
+                  key={`cert-${groupKey}-${index}`}
+                >
+                  <div className="app__certification-content">
+                    {cert.logo && (
+                      <div
+                        className="app__certification-logo"
+                        onClick={() => openModal(cert)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyPress={(e) => e.key === 'Enter' && openModal(cert)}
+                      >
+                        <img src={urlFor(cert.logo).url()} alt={cert.issuer} />
+                        <div className="app__certification-overlay">
+                          <span>{t('certifications.clickToView')}</span>
+                        </div>
+                      </div>
+                    )}
+                    <div className="app__certification-info">
+                      <h3 className="bold-text">{cert.name}</h3>
+                      <p className="p-text">{cert.issuer}</p>
+                      {cert.date && (
+                        <p className="p-text cert-date">
+                          {new Date(cert.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                        </p>
+                      )}
+                      {cert.credentialId && (
+                        <p className="p-text cert-id">ID: {cert.credentialId}</p>
+                      )}
                     </div>
+                    {cert.credentialUrl && (
+                      <div className="app__certification-link">
+                        <a href={cert.credentialUrl} target="_blank" rel="noreferrer">
+                          <button type="button" className="p-text">{t('certifications.viewCert')}</button>
+                        </a>
+                      </div>
+                    )}
                   </div>
-                )}
-                <div className="app__certification-info">
-                  <h3 className="bold-text">{cert.name}</h3>
-                  <p className="p-text">{cert.issuer}</p>
-                  {cert.date && (
-                    <p className="p-text cert-date">
-                      {new Date(cert.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                    </p>
-                  )}
-                  {cert.credentialId && (
-                    <p className="p-text cert-id">ID: {cert.credentialId}</p>
-                  )}
                 </div>
-                {cert.credentialUrl && (
-                  <div className="app__certification-link">
-                    <a href={cert.credentialUrl} target="_blank" rel="noreferrer">
-                      <button type="button" className="p-text">{t('certifications.viewCert')}</button>
-                    </a>
-                  </div>
-                )}
-              </div>
-            </motion.div>
+              ))}
+            </div>
           ))}
         </div>
       </div>
