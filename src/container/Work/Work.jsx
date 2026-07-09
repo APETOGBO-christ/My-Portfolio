@@ -4,20 +4,25 @@ import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
+import { ProjectModal } from '../../components';
 import { urlFor, client } from '../../client';
 import './Work.scss';
+
+const WORKS_QUERY = `*[_type == "works"]{
+  _id, title, description, projectLink, codeLink, imgUrl, tags, gallery,
+  documents[]{ _key, title, description, "fileUrl": file.asset->url, "fileName": file.asset->originalFilename }
+}`;
 
 const Work = () => {
   const [works, setWorks] = useState([]);
   const [filterWork, setFilterWork] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
+  const [selectedProject, setSelectedProject] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
-    const query = '*[_type == "works"]';
-
-    client.fetch(query).then((data) => {
+    client.fetch(WORKS_QUERY).then((data) => {
       setWorks(data);
       setFilterWork(data);
     });
@@ -73,9 +78,7 @@ const Work = () => {
       >
         {filterWork.map((work) => (
           <div className="app__work-item app__flex" key={work._id}>
-            <div
-              className="app__work-img app__flex"
-            >
+            <div className="app__work-img app__flex">
               {work.imgUrl && <img src={urlFor(work.imgUrl).url()} alt={work.name} />}
 
               <motion.div
@@ -83,21 +86,26 @@ const Work = () => {
                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                 className="app__work-hover app__flex"
               >
-                <a href={work.projectLink} target="_blank" rel="noreferrer">
+                <motion.div
+                  role="button"
+                  tabIndex={0}
+                  aria-label={t('work.viewDetails')}
+                  onClick={() => setSelectedProject(work)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') setSelectedProject(work);
+                  }}
+                  whileInView={{ scale: [0, 1] }}
+                  whileHover={{ scale: [1, 0.9] }}
+                  transition={{ duration: 0.25 }}
+                  className="app__flex"
+                >
+                  <AiFillEye />
+                </motion.div>
 
+                <a href={work.codeLink} target="_blank" rel="noreferrer" aria-label={t('work.viewCode')}>
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.90] }}
-                    transition={{ duration: 0.25 }}
-                    className="app__flex"
-                  >
-                    <AiFillEye />
-                  </motion.div>
-                </a>
-                <a href={work.codeLink} target="_blank" rel="noreferrer">
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.90] }}
+                    whileHover={{ scale: [1, 0.9] }}
                     transition={{ duration: 0.25 }}
                     className="app__flex"
                   >
@@ -118,6 +126,8 @@ const Work = () => {
           </div>
         ))}
       </motion.div>
+
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </>
   );
 };
