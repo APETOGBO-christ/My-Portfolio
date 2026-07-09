@@ -1,79 +1,79 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { FiDownload, FiArrowUpRight } from 'react-icons/fi';
 
 import { AppWrap } from '../../wrapper';
 import { images } from '../../constants';
 import './Header.scss';
 
-const scaleVariants = {
-  whileInView: {
-    scale: [0, 1],
-    opacity: [0, 1],
-    transition: {
-      duration: 1,
-      ease: 'easeInOut',
-    },
-  },
-};
+const CV_LINK = 'https://drive.google.com/file/d/1gIS7wPJ53HDtu25DNUjmg79cpgQygRoF/view?usp=sharing';
+const VALUES = ['Excellence', 'Responsabilité', 'Discipline', 'Intégrité'];
+
+const EASE = [0.16, 1, 0.3, 1];
 
 const Header = () => {
   const { t } = useTranslation();
+  const reduce = useReducedMotion();
+
+  // Staggered "rise" entrance, disabled under prefers-reduced-motion.
+  const rise = (delay = 0) => ({
+    initial: reduce ? false : { opacity: 0, y: 26 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.7, delay, ease: EASE },
+  });
 
   return (
-    <div className="app__header app__flex">
-      <motion.div
-        whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-        transition={{ duration: 0.5 }}
-        className="app__header-info"
-      >
-        <div className="app__header-badge">
-          <div className="badge-cmp app__flex">
-            <span>👋</span>
-            <div style={{ marginLeft: 20 }}>
-              <p className="p-text">{t('header.hello')}</p>
-              <h1 className="head-text">Christ APETOGBO</h1>
-            </div>
-          </div>
+    <div className="app__header">
+      <div className="app__header-grid">
+        <div className="app__header-info">
+          <motion.p className="hero-eyebrow" {...rise(0)}>
+            {t('header.hello')}
+          </motion.p>
 
-          <div className="tag-cmp app__flex">
-            <p className="p-text">{t('header.title1')}</p>
-            <p className="p-text">{t('header.title2')}</p>
-          </div>
-          <div className="cv-download">
-            <a href="https://drive.google.com/file/d/1gIS7wPJ53HDtu25DNUjmg79cpgQygRoF/view?usp=sharing" download>
-              <button type="button" className="p-text">{t('header.downloadCV')}</button>
+          <motion.h1 className="hero-name" {...rise(0.08)}>
+            Christ <span>APETOGBO</span>
+          </motion.h1>
+
+          <motion.div className="hero-roles" {...rise(0.16)}>
+            <span>{t('header.title1')}</span>
+            <span className="hero-roles-sep" aria-hidden="true" />
+            <span>{t('header.title2')}</span>
+          </motion.div>
+
+          <motion.div className="hero-cta" {...rise(0.24)}>
+            <a href={CV_LINK} className="btn-primary" target="_blank" rel="noreferrer">
+              <FiDownload aria-hidden="true" />
+              {t('header.downloadCV')}
             </a>
-          </div>
+            <a href="#work" className="btn-ghost">
+              {t('header.viewProjects')}
+              <FiArrowUpRight aria-hidden="true" />
+            </a>
+          </motion.div>
         </div>
-      </motion.div>
 
-      <motion.div
-        whileInView={{ opacity: [0, 1] }}
-        transition={{ duration: 0.5, delayChildren: 0.5 }}
-        className="app__header-img"
-      >
-        <img src={images.profile} alt="profile_bg" />
-        <motion.img
-          whileInView={{ scale: [0, 1] }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-          src={images.circle}
-          alt="profile_circle"
-          className="overlay_circle"
-        />
-      </motion.div>
-
-      <motion.div
-        variants={scaleVariants}
-        whileInView={scaleVariants.whileInView}
-        className="app__header-circles"
-      >
-        {['Excellence', 'Responsabilité', 'Discipline', 'Intégrité'].map((item, index) => (
-          <div className={`circle-cmp app__flex ${index === 3 ? 'circle-small' : ''}`} key={`circle-${index}`}>
-            <p className="p-text stylized-word">{item}</p>
+        <motion.div
+          className="app__header-img"
+          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
+        >
+          <div className="hero-photo">
+            <span className="hero-photo-block" aria-hidden="true" />
+            <img src={images.profile} alt="Christ APETOGBO" />
           </div>
+        </motion.div>
+      </div>
+
+      <motion.ul className="app__header-values" {...rise(0.38)}>
+        {VALUES.map((value, i) => (
+          <li key={value}>
+            <span className="value-index">{String(i + 1).padStart(2, '0')}</span>
+            <span className="value-label">{value}</span>
+          </li>
         ))}
-      </motion.div>
+      </motion.ul>
     </div>
   );
 };

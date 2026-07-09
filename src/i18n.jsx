@@ -18,7 +18,8 @@ const resources = {
         hello: 'Bonjour, je suis',
         title1: 'Leader & Entrepreneur',
         title2: 'Informatique et Cybersécurité',
-        downloadCV: 'Télécharger CV',
+        downloadCV: 'Télécharger le CV',
+        viewProjects: 'Voir mes projets',
       },
       about: {
         line1: 'Construire des',
@@ -42,7 +43,7 @@ const resources = {
       certifications: {
         title: 'Mes <1>Certifications</1> & Formations',
         viewCert: 'Voir le Certificat',
-        clickToView: '🔍 Cliquer pour voir en taille réelle',
+        clickToView: 'Cliquer pour voir en taille réelle',
       },
       team: {
         title: 'Mon <1>Équipe</1> & Mentors',
@@ -79,6 +80,7 @@ const resources = {
         title1: 'Leader & Entrepreneur',
         title2: 'Cybersecurity Expert',
         downloadCV: 'Download CV',
+        viewProjects: 'View my work',
       },
       about: {
         line1: 'Building',
@@ -102,7 +104,7 @@ const resources = {
       certifications: {
         title: 'My <1>Certifications</1> & Training',
         viewCert: 'View Certificate',
-        clickToView: '🔍 Click to view full size',
+        clickToView: 'Click to view full size',
       },
       team: {
         title: 'My <1>Team</1> & Mentors',

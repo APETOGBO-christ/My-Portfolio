@@ -26,19 +26,19 @@ const Gallery = () => {
       </h2>
 
       <div className="app__gallery-container">
-        {gallery.map((item, index) => (
+        {gallery.map((item) => (
           <motion.div
             whileInView={{ opacity: [0, 1] }}
             transition={{ duration: 0.5 }}
             className="app__gallery-item"
-            key={index}
+            key={item._id}
           >
             <div className="app__gallery-img">
               {item.imgUrl && (
                 <img src={urlFor(item.imgUrl).url()} alt={item.title} />
               )}
               <motion.div
-                whileHover={{ opacity: [0, 1] }}
+                whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                 className="app__gallery-hover"
               >

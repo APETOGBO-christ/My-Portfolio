@@ -1,11 +1,13 @@
+// Radius system (documented rule): interactive elements = pill (999px), containers = 24px.
+// Single accent: --secondary-color (indigo). Page stays light throughout.
+
 #home {
   position: relative;
-  background: url("../../assets/bgIMG.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(49, 59, 172, 0.07), transparent 46%),
+    linear-gradient(180deg, #ffffff 0%, var(--primary-color) 100%);
 
-  // disable the default padding styles
+  // keep AppWrap defaults tidy for the hero
   .app__wrapper {
     padding: 0;
 
@@ -16,272 +18,271 @@
 }
 
 .app__header {
-  flex: 1;
   width: 100%;
-  height: 100%;
-  flex-direction: row;
+  max-width: 1340px;
+  min-height: 100vh;
+  margin: 0 auto;
 
-  padding: 6rem 2rem 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
 
-  @media screen and (min-width: 2000px) {
-    padding-top: 8rem;
-  }
+  padding: 7rem 3rem 2.5rem;
 
-  @media screen and (max-width: 1200px) {
-    flex-direction: column;
-  }
-
-  @media screen and (max-width: 450px) {
-    padding: 6rem 1rem 2rem;
+  @media screen and (max-width: 1100px) {
+    padding: 6rem 1.5rem 2rem;
+    gap: 2rem;
   }
 }
 
+.app__header-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* -------- Left column: editorial type block -------- */
 .app__header-info {
-  flex: 0.65;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
-  height: 100%;
-
-  margin: 0 2rem;
-
-  @media screen and (max-width: 1200px) {
-    width: 100%;
-    margin-right: 0rem;
-  }
+  gap: 1.5rem;
 }
 
-.app__header-badge {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-direction: column;
+.hero-eyebrow {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
 
-  .badge-cmp,
-  .tag-cmp {
-    padding: 1rem 2rem;
-    background: var(--white-color);
-    border-radius: 15px;
-    flex-direction: row;
-    width: auto;
-
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .tag-cmp {
-    flex-direction: column;
-    margin-top: 3rem;
-
-    p {
-      width: 100%;
-      text-transform: uppercase;
-      text-align: right;
-    }
-  }
-
-  .cv-download {
-    margin-top: 2rem;
-
-    button {
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      border: none;
-      background-color: var(--secondary-color);
-      color: var(--white-color);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        background-color: var(--primary-color);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
-    }
-  }
+.hero-name {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--black-color);
 
   span {
-    font-size: 2.5rem;
-
-    @media screen and (min-width: 2000px) {
-      font-size: 5rem;
-    }
-  }
-
-  @media screen and (max-width: 1200px) {
-    justify-content: flex-start;
-    align-items: flex-start;
+    display: block;
+    color: var(--secondary-color);
   }
 }
 
-.app__header-circles {
-  flex: 0.75;
+.hero-roles {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  height: 100%;
-  position: relative;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 500;
+  color: var(--gray-color);
 
-  margin-left: 1rem;
-
-  div {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-
-    background: var(--white-color);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    
-    // Centering text content
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0; // Remove padding to let flexbox center perfectly
-    text-align: center;
+  .hero-roles-sep {
+    flex-shrink: 0;
+    width: 28px;
+    height: 1.5px;
+    background: var(--secondary-color);
+    opacity: 0.5;
   }
 
-  .stylized-word {
-    font-size: 0.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.5px;
-    
-    // "Taillée" effect
-    background: linear-gradient(135deg, var(--black-color) 0%, var(--secondary-color) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1));
-    
-    margin: 0;
-    width: 100%;
-    line-height: 1; // Tighter line height for better vertical centering
-    display: flex;       // Make text itself a flex container
-    justify-content: center; // Center content inside text block
-    align-items: center; // Center verticality if height > font-size
-    height: 100%;        // Take full height of parent
-
-    @media screen and (min-width: 2000px) {
-      font-size: 1.5rem;
-    }
-  }
-
-  // circles with different height & width and tailored font sizes
-
-  div:nth-child(1) { // Excellence
-    width: 100px;
-    height: 100px;
-    
-    .stylized-word {
-      font-size: 0.6rem; 
-    }
-  }
-
-  div:nth-child(2) { // Responsabilité
-    margin: 1.75rem;
-    width: 150px;
-    height: 150px;
-    
-    .stylized-word {
-      font-size: 0.8rem;
-    }
-  }
-
-  div:nth-child(3) { // Discipline
-    width: 70px;
-    height: 70px;
-    
-    .stylized-word {
-      font-size: 0.45rem;
-    }
-  }
-
-  // New 4th circle - smallest, positioned to the right
-  div:nth-child(4) { // Intégrité
-    width: 55px;
-    height: 55px;
-    position: absolute;
-    right: 15px;
-    top: 28%;
-    
-    .stylized-word {
-      font-size: 0.35rem;
-    }
-  }
-
-  @media screen and (min-width: 2000px) {
-    div:nth-child(2) {
-      width: 400px;
-      height: 400px;
-      
-      .stylized-word { font-size: 2rem; }
-    }
-
-    div:nth-child(3) {
-      width: 170px;
-      height: 170px;
-      
-      .stylized-word { font-size: 1rem; }
-    }
-
-    div:nth-child(1) {
-      width: 200px;
-      height: 200px;
-      
-      .stylized-word { font-size: 1.2rem; }
-    }
-
-    div:nth-child(4) {
-      width: 120px;
-      height: 120px;
-      
-      .stylized-word { font-size: 0.8rem; }
-    }
-  }
-
-  @media screen and (max-width: 1200px) {
-    width: 100%;
-    flex-direction: row;
+  @media screen and (max-width: 600px) {
     flex-wrap: wrap;
-    margin-left: 0;
+    gap: 0.5rem 0.85rem;
 
-    div {
-      margin: 1rem;
+    .hero-roles-sep {
+      display: none;
     }
   }
 }
 
-.app__header-img {
-  flex: 1;
-  height: 100%;
-
+.hero-cta {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: 999px;
+    font-family: var(--font-base);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease,
+      background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+
+    svg {
+      font-size: 1.05rem;
+    }
+  }
+
+  .btn-primary {
+    background: var(--secondary-color);
+    color: var(--white-color);
+    border: 1.5px solid var(--secondary-color);
+
+    &:hover {
+      background: #232a8a;
+      border-color: #232a8a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(49, 59, 172, 0.28);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--secondary-color);
+    border: 1.5px solid rgba(49, 59, 172, 0.35);
+
+    &:hover {
+      background: rgba(49, 59, 172, 0.06);
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+
+    a {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+}
+
+/* -------- Right column: framed photo (offset accent block) -------- */
+.app__header-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo {
   position: relative;
+  width: 100%;
+  max-width: 420px;
+
+  .hero-photo-block {
+    position: absolute;
+    inset: 0;
+    transform: translate(22px, 22px);
+    background: var(--secondary-color);
+    border-radius: 24px;
+    z-index: 0;
+  }
 
   img {
-    width: 100%;
-    object-fit: contain;
+    position: relative;
     z-index: 1;
-  }
-
-  .overlay_circle {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
+    display: block;
     width: 100%;
-    height: 90%;
+    border-radius: 24px;
+    background: var(--white-color);
+    box-shadow: 0 24px 60px rgba(3, 3, 3, 0.14);
   }
 
-  @media screen and (max-width: 1200px) {
-    margin: 2rem 0;
+  @media screen and (max-width: 1100px) {
+    max-width: 340px;
+
+    .hero-photo-block {
+      transform: translate(16px, 16px);
+    }
+  }
+}
+
+/* -------- Values index -------- */
+.app__header-values {
+  list-style: none;
+  margin: 0;
+  padding: 1.75rem 0 0;
+  border-top: 1px solid rgba(3, 3, 3, 0.09);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.75rem;
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .value-index {
+    font-family: "Space Mono", monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+  }
+
+  .value-label {
+    font-family: var(--font-base);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--black-color);
+  }
+
+  @media screen and (max-width: 600px) {
+    gap: 1rem 1.75rem;
+  }
+}
+
+/* -------- Large displays -------- */
+@media screen and (min-width: 2000px) {
+  .app__header {
+    max-width: 1700px;
+  }
+
+  .hero-eyebrow {
+    font-size: 1.2rem;
+  }
+
+  .hero-name {
+    font-size: 7rem;
+  }
+
+  .hero-roles {
+    font-size: 1.6rem;
+  }
+
+  .hero-cta a {
+    font-size: 1.3rem;
+    padding: 1.2rem 2.2rem;
+  }
+
+  .hero-photo {
+    max-width: 560px;
+  }
+
+  .app__header-values {
+    .value-index,
+    .value-label {
+      font-size: 1.1rem;
+    }
   }
 }

@@ -55,9 +55,9 @@ const Work = () => {
       </h2>
 
       <div className="app__work-filter">
-        {['Cybersecurity', 'Web App', 'Mobile App', 'Innovation', 'All'].map((item, index) => (
+        {['Cybersecurity', 'Web App', 'Mobile App', 'Innovation', 'All'].map((item) => (
           <div
-            key={index}
+            key={item}
             onClick={() => handleWorkFilter(item)}
             className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
           >
@@ -71,15 +71,15 @@ const Work = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__work-portfolio"
       >
-        {filterWork.map((work, index) => (
-          <div className="app__work-item app__flex" key={index}>
+        {filterWork.map((work) => (
+          <div className="app__work-item app__flex" key={work._id}>
             <div
               className="app__work-img app__flex"
             >
               {work.imgUrl && <img src={urlFor(work.imgUrl).url()} alt={work.name} />}
 
               <motion.div
-                whileHover={{ opacity: [0, 1] }}
+                whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                 className="app__work-hover app__flex"
               >
