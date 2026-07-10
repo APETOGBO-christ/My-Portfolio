@@ -7,7 +7,7 @@ import { AppWrap } from '../../wrapper';
 import { images } from '../../constants';
 import './Header.scss';
 
-const CV_LINK = 'https://drive.google.com/file/d/1gIS7wPJ53HDtu25DNUjmg79cpgQygRoF/view?usp=sharing';
+const CV_LINK = 'https://drive.google.com/file/d/1h9LBbeGu_dkCiS-EYFeTwlsdVKGqAIrB/view?usp=sharing';
 const VALUES = ['Excellence', 'Responsabilité', 'Discipline', 'Intégrité'];
 
 const EASE = [0.16, 1, 0.3, 1];
